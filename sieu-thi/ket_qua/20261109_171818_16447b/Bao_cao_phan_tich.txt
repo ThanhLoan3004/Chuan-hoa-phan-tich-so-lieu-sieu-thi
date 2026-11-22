@@ -1,0 +1,68 @@
+﻿BÀI TẬP 3 – PHÁT HIỆN MẪU VÀ GIẢI THÍCH
+
+Tệp đầu vào: C:\Users\ADMIN\Desktop\CONG NGHE SO\bth2\m2526019-truong-thi-thanh-loan\BaiTap3\supermarket_Sales.csv
+SHA-256 của tệp: 4e397231dadf3f28da3d48dd6ebf9f36828971f3f3f6f032c4e132fce6d38ad9
+Thời điểm chạy trên máy: 09/11/2026 17:18:18
+Nguồn: https://www.kaggle.com/datasets/aungpyaeap/supermarket-sales
+Bản CSV đối chiếu: https://raw.githubusercontent.com/plotly/datasets/master/supermarket_Sales.csv
+
+1. MỤC TIÊU VÀ PHƯƠNG PHÁP
+Phát hiện các mẫu theo thời gian, nhóm hàng và chi nhánh bằng thống kê mô tả.
+Tổng tiền dùng cột Total gốc, đã gồm thuế. Không đồng nhất chỉ tiêu này với doanh thu thuần hoặc lợi nhuận.
+Số giao dịch là số mã Invoice ID; không phải số khách hàng duy nhất.
+Bình quân/giao dịch = tổng tiền / số giao dịch; tỷ trọng = tổng tiền nhóm / tổng toàn bộ.
+Bình quân/ngày = tổng tiền / số ngày phân biệt có dữ liệu; không phải bình quân trên toàn bộ ngày mở cửa.
+
+2. KIỂM TRA DỮ LIỆU
+- Số dòng đọc từ tệp: 1000
+- Ô thiếu trong các cột bắt buộc (trước chuẩn hóa): 0
+- Dòng không hợp lệ bị loại: 0
+- Dòng trùng hoàn toàn bị loại: 0
+- Dòng lệch công thức giá × lượng × 1,05 trên 0,01: 0
+- Số dòng sử dụng phân tích: 1000
+- Khoảng ngày: 01/01/2019 đến 30/03/2019.
+- Tổng tiền có thuế: 322.966,75 ($ theo nguồn).
+Dòng bị loại được lưu riêng. Không tự điền giá trị thiếu. Sai lệch tiền chỉ được cảnh báo, không ghi đè Total.
+
+3. MẪU 1 – BIẾN ĐỘNG THEO THÁNG
+- 2019-01: 352 giao dịch; tổng 116.291,87; bình quân/giao dịch 330,37; 31 ngày có dữ liệu; bình quân/ngày 3.751,35.
+- 2019-02: 303 giao dịch; tổng 97.219,37; bình quân/giao dịch 320,86; 28 ngày có dữ liệu; bình quân/ngày 3.472,12.
+  So với tháng liền trước: tổng tiền thay đổi -16,40%; bình quân/ngày thay đổi -7,44%.
+- 2019-03: 345 giao dịch; tổng 109.455,51; bình quân/giao dịch 317,26; 30 ngày có dữ liệu; bình quân/ngày 3.648,52.
+  So với tháng liền trước: tổng tiền thay đổi 12,59%; bình quân/ngày thay đổi 5,08%.
+Quan sát: giá trị giao dịch bình quân giảm qua tất cả các kỳ được ghi nhận.
+Giải thích số học: tổng tiền bằng số giao dịch nhân giá trị giao dịch bình quân. Số ngày ghi nhận khác nhau cũng ảnh hưởng tổng tháng.
+Giả thuyết kinh doanh: thay đổi khuyến mãi, cơ cấu sản phẩm hoặc nhu cầu mua sắm. Tệp chưa đủ thông tin để xác định nguyên nhân.
+Ứng dụng: theo dõi đồng thời lượng giao dịch và giá trị bình quân; thử nghiệm gói mua kèm, đo kết quả trước khi mở rộng.
+
+4. MẪU 2 – CƠ CẤU NHÓM HÀNG
+- Thực phẩm và đồ uống: 56.144,84; tỷ trọng 17,38%; 174 giao dịch.
+- Thể thao và du lịch: 55.122,83; tỷ trọng 17,07%; 166 giao dịch.
+- Phụ kiện điện tử: 54.337,53; tỷ trọng 16,82%; 170 giao dịch.
+- Phụ kiện thời trang: 54.305,89; tỷ trọng 16,81%; 178 giao dịch.
+- Nhà cửa và đời sống: 53.861,91; tỷ trọng 16,68%; 160 giao dịch.
+- Sức khỏe và làm đẹp: 49.193,74; tỷ trọng 15,23%; 152 giao dịch.
+Nhóm có tổng tiền cao nhất: Thực phẩm và đồ uống; thấp nhất: Sức khỏe và làm đẹp.
+Nhóm cao nhất hơn nhóm thấp nhất 14,13%. Chênh lệch tỷ trọng: 2,15 điểm phần trăm.
+Giải thích: tổng tiền nhóm phụ thuộc số giao dịch, đơn giá và số lượng. Nhu cầu thường xuyên là giả thuyết cần dữ liệu mua lặp lại để kiểm chứng.
+Ứng dụng: tham khảo cơ cấu bán hàng khi nhập hàng; kết hợp tồn kho, vòng quay và chi phí trước khi tăng hoặc giảm một nhóm.
+
+5. MẪU 3 – SO SÁNH CHI NHÁNH
+- C: 328 giao dịch; tổng 110.568,71; bình quân/giao dịch 337,10.
+- A: 340 giao dịch; tổng 106.200,37; bình quân/giao dịch 312,35.
+- B: 332 giao dịch; tổng 106.197,67; bình quân/giao dịch 319,87.
+Chi nhánh có tổng tiền cao nhất: C. Chi nhánh có nhiều giao dịch nhất: A.
+Quan sát: chi nhánh dẫn đầu tổng tiền không phải chi nhánh có nhiều giao dịch nhất; giá trị bình quân/giao dịch góp phần giải thích khác biệt.
+Giả thuyết: cơ cấu sản phẩm, mức giá hoặc số lượng mỗi lần mua khác nhau. Cần đối chiếu các biến này trước khi kết luận về nguyên nhân.
+Ứng dụng: nghiên cứu cơ cấu hàng và giỏ mua tại chi nhánh có giá trị bình quân cao; thử nghiệm có đo lường ở chi nhánh khác.
+
+6. GIỚI HẠN VÀ KẾT LUẬN
+Các kết quả chỉ mô tả tệp được phân tích, không chứng minh quan hệ nhân quả hoặc khác biệt có ý nghĩa thống kê.
+Ba tháng dữ liệu chưa đủ để khẳng định mùa vụ hằng năm. Ngày không xuất hiện có thể là thiếu dữ liệu hoặc không có giao dịch; không tự coi là doanh số bằng 0.
+Không có mã khách hàng duy nhất, thông tin khuyến mãi, tồn kho, diện tích hoặc chi phí vận hành để kết luận hành vi mua lặp lại hay hiệu quả lợi nhuận.
+Trong bản dữ liệu tham chiếu, Gross income bằng Tax 5%; không dùng cột này để suy ra lợi nhuận thực tế.
+Các bảng và biểu đồ cung cấp bằng chứng cho ít nhất hai mẫu khi dữ liệu có đủ nhóm/kỳ. Giải thích kinh doanh là giả thuyết cần kiểm chứng bổ sung.
+
+CÁCH ĐỌC KẾT QUẢ
+Các cột Ty_trong và Thay_doi_* trong CSV lưu dưới dạng tỷ lệ: 0,10 tương ứng 10%.
+CSV chứa kết quả tính từ Python, không chứa công thức Excel. Xem mã .py để kiểm tra cách tính.
