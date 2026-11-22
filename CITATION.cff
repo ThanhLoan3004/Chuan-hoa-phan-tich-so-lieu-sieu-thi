@@ -1,0 +1,25 @@
+cff-version: 1.2.0
+message: "Nếu bạn sử dụng mã nguồn, quy trình xử lý hoặc kết quả phân tích từ kho lưu trữ này trong nghiên cứu hoặc bài báo, vui lòng trích dẫn theo thông tin dưới đây."
+type: software
+title: "Chuẩn hóa, Xử lý và Phân tích Dữ liệu Kinh doanh Siêu thị (Supermarket Sales)"
+abstract: "Quy trình tự động hóa kiểm tra chất lượng, chuẩn hóa dữ liệu giao dịch siêu thị, đối chiếu công thức thuế và phân tích thống kê mô tả bằng Python nhằm phát hiện các mẫu hình kinh doanh theo thời gian, nhóm hàng và chi nhánh."
+authors:
+  - family-names: "Trương"
+    given-names: "Thị Thanh Loan"
+    affiliation: "Trường Trung học phổ thông Tắc Vân / Học viên mã số m2526019"
+version: 1.0.0
+date-released: 2026-11-22
+license: MIT
+keywords:
+  - supermarket-sales
+  - data-cleaning
+  - exploratory-data-analysis
+  - python
+  - pandas
+  - business-analytics
+references:
+  - type: dataset
+    title: "Supermarket Sales Dataset"
+    authors:
+      - name: "Aung Pyae"
+    url: "https://www.kaggle.com/datasets/aungpyaeap/supermarket-sales"
